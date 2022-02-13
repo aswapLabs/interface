@@ -174,7 +174,7 @@ export default function SettingsTab({ placeholderSlippage }: { placeholderSlippa
         </ModalContentWrapper>
       </Modal>
       <StyledMenuButton onClick={toggle} id="open-settings-dialog-button">
-        <img height={'18px'} src={sz} alt="logo" />
+        <img height={'20px'} src={sz} alt="logo" />
       </StyledMenuButton>
       {open && (
         <MenuFlyout>

@@ -159,7 +159,7 @@ export default function Pool() {
           <AutoColumn gap="md" style={{ width: '100%' }}>
             <TitleRow style={{ marginTop: '1rem' }} padding={'0'}>
               <HideSmall>
-                <TYPE.mediumHeader style={{ marginTop: '0.5rem', justifySelf: 'flex-start' }}>
+                <TYPE.mediumHeader style={{ marginTop: '0.5rem', justifySelf: 'flex-start', color: '#fff' }}>
                   {/* <Trans>Your V2 liquidity</Trans> */}
                   <Trans>Your liquidity</Trans>
                 </TYPE.mediumHeader>

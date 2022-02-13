@@ -25,7 +25,7 @@ export default function SwapModalFooter({
         <ButtonError
           onClick={onConfirm}
           disabled={disabledConfirm}
-          style={{ margin: '10px 0 0 0' }}
+          style={{ margin: '20px 0 0 0' }}
           id="confirm-swap-or-send"
         >
           <Text fontSize={20} fontWeight={500}>

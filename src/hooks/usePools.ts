@@ -22,7 +22,7 @@ export enum PoolState {
 export function usePools(
   poolKeys: [Currency | undefined, Currency | undefined, FeeAmount | undefined][]
 ): [PoolState, Pool | null][] {
-  const { chainId } = useActiveWeb3React()
+  const { chainId, account } = useActiveWeb3React()
 
   const transformed: ([Token, Token, FeeAmount] | null)[] = useMemo(() => {
     return poolKeys.map(([currencyA, currencyB, feeAmount]) => {
@@ -37,8 +37,7 @@ export function usePools(
   }, [chainId, poolKeys])
 
   const poolAddresses: (string | undefined)[] = useMemo(() => {
-    const v3CoreFactoryAddress = chainId && V3_CORE_FACTORY_ADDRESSES[chainId]
-
+    const v3CoreFactoryAddress = chainId && V3_CORE_FACTORY_ADDRESSES[chainId] && account
     return transformed.map((value) => {
       if (!v3CoreFactoryAddress || !value) return undefined
       return computePoolAddress({

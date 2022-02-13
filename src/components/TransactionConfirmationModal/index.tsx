@@ -159,7 +159,7 @@ export function ConfirmationModalContent({
   bottomContent?: () => ReactNode | undefined
 }) {
   return (
-    <Wrapper>
+    <Wrapper style={{padding: '17px'}}>
       <Section>
         <RowBetween>
           <Text fontWeight={500} fontSize={16}>

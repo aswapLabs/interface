@@ -43,7 +43,7 @@ export function ConfirmAddModalBottom({
         </RowFixed>
       </RowBetween>
       <RowBetween>
-        <TYPE.body>
+        <TYPE.body style={{height: '24px', lineHeight: '24px'}}>
           <Trans>Rates</Trans>
         </TYPE.body>
         <TYPE.body>
@@ -53,14 +53,14 @@ export function ConfirmAddModalBottom({
         </TYPE.body>
       </RowBetween>
       <RowBetween style={{ justifyContent: 'flex-end' }}>
-        <TYPE.body>
+        <TYPE.body style={{height: '24px', lineHeight: '24px'}}>
           {`1 ${currencies[Field.CURRENCY_B]?.symbol} = ${price?.invert().toSignificant(4)} ${
             currencies[Field.CURRENCY_A]?.symbol
           }`}
         </TYPE.body>
       </RowBetween>
       <RowBetween>
-        <TYPE.body>
+        <TYPE.body style={{height: '24px', lineHeight: '24px'}}>
           <Trans>Share of Pool:</Trans>
         </TYPE.body>
         <TYPE.body>

@@ -5,6 +5,11 @@ import Popups from '../components/Popups'
 import Web3ReactManager from '../components/Web3ReactManager'
 import ErrorBoundary from '../components/ErrorBoundary'
 import { Redirect } from 'react-router';
+import AllBackground from '../assets/images/wall/background.png'
+import BlueBall from '../assets/images/wall/blueBall.png'
+import PurpleBall from '../assets/images/wall/purpleBall.png'
+import Rocket from '../assets/images/wall/rocket.png'
+import YellowBall from '../assets/images/wall/yellowBall.png'
 // import DarkModeQueryParamReader from '../theme/DarkModeQueryParamReader'
 // import ApeModeQueryParamReader from 'hooks/useApeModeQueryParamReader'
 
@@ -44,6 +49,31 @@ const AppWrapper = styled.div`
   display: flex;
   flex-flow: column;
   align-items: flex-start;
+  background: url(${AllBackground});
+  min-height: 100vh;
+  &:before {
+    content: '';
+    display: block;
+    width: 12vh;
+    height: 12vh;
+    background: url(${BlueBall}) no-repeat;
+    background-size: contain;
+    position: fixed;
+    top: 23vh;
+    left: 9vw;
+  }
+  &:after {
+    content: '';
+    display: block;
+    width: 7vh;
+    height: 7vh;
+    background: url(${YellowBall}) no-repeat;
+    background-size: contain;
+    position: fixed;
+    top: 15vh;
+    right: 16vw;
+  }
+  
 `
 
 const BodyWrapper = styled.div`
@@ -54,6 +84,33 @@ const BodyWrapper = styled.div`
   align-items: center;
   flex: 1;
   z-index: 1;
+
+  &:before {
+    content: '';
+    display: block;
+    width: 10vw;
+    height: 20vh;
+    background: url(${Rocket}) no-repeat;
+    background-size: contain;
+    position: fixed;
+    top: 62vh;
+    left: 19vw;
+    opacity: 0.8;
+  }
+  &:after {
+    content: '';
+    display: block;
+    width: 16vh;
+    height: 16vh;
+    background: url(${PurpleBall}) no-repeat;
+    background-size: contain;
+    position: fixed;
+    top: 60vh;
+    right: 10vw;
+    z-index: -1;
+    opacity: 0.9;
+    
+  }
 
   ${({ theme }) => theme.mediaWidth.upToSmall`
   padding: 6rem 16px 16px 16px;
@@ -68,7 +125,6 @@ const HeaderWrapper = styled.div`
   top: 0;
   z-index: 2;
 `
-
 const Marginer = styled.div`
   margin-top: 5rem;
 `

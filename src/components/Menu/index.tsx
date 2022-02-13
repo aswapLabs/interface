@@ -147,7 +147,7 @@ export default function Menu() {
               <Trans>About</Trans>
             </div>
           </MenuItem>
-          <MenuItem href="https://hongxue-fu.gitbook.io/aswap">
+          <MenuItem href="https://docs.aswap.exchange">
             <BookOpen size={14} />
             <div>
               <Trans>Docs</Trans>
@@ -159,7 +159,7 @@ export default function Menu() {
               <Trans>Code</Trans>
             </div>
           </MenuItem>
-          <MenuItem href="https://discord.gg/tnjMD7zp">
+          <MenuItem href="https://discord.gg/eCHA3f44Af">
             <MessageCircle size={14} />
             <div>
               <Trans>Discord</Trans>
