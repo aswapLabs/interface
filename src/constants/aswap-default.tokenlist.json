@@ -1,0 +1,38 @@
+{
+  "name": "Aswap Default List",
+  "timestamp": "2021-01-21T23:57:10.982Z",
+  "version": {
+    "major": 2,
+    "minor": 0,
+    "patch": 0
+  },
+  "tags": {},
+  "logoURI": "ipfs://QmNa8mQkrNKp1WEEeGjFezDmDeodkWRevGFN8JCV7b4Xir",
+  "keywords": ["Aswap", "default"],
+  "tokens": [
+    {
+      "chainId": 251,
+      "address": "0x0a7b8dab322448af454fccaffbcbf247::BX_USDT::BX_USDT",
+      "name": "BX_USDT",
+      "symbol": "BX_USDT",
+      "decimals": 9,
+      "logoURI": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0xdAC17F958D2ee523a2206206994597C13D831ec7/logo.png"
+    },
+    {
+      "chainId": 251,
+      "address": "0x0a7b8dab322448af454fccaffbcbf247::UNI::UNI",
+      "name": "UNI",
+      "symbol": "UNI",
+      "decimals": 9,
+      "logoURI": "https://cj.55128.cn/update/fxh/ranking/uniswap.png"
+    },
+    {
+      "chainId": 251,
+      "address": "0xfe125d419811297dfab03c61efec0bc9::FAI::FAI",
+      "name": "FAI",
+      "symbol": "FAI",
+      "decimals": 9,
+      "logoURI": "https://fai-frontend.vercel.app/img/token_fai.fcf86126.svg"
+    }
+  ]
+}

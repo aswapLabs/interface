@@ -1,0 +1,152 @@
+import { bcs, utils } from '@starcoin/starcoin'
+import { arrayify, hexlify } from '@ethersproject/bytes'
+import { useCallback } from 'react'
+import useStarcoinProvider from './useStarcoinProvider'
+import { TransactionPayloadVariantScriptFunction } from '@starcoin/starcoin/dist/src/lib/runtime/starcoin_types'
+import { useTransactionExpirationSecs } from './useTransactionDeadline'
+
+const PREFIX = '0x9bb5ace47e68616f64229b119f4c5d95::Router02::'
+
+function serializeU128(value: string | number): string {
+  const se = new bcs.BcsSerializer()
+  se.serializeU128(BigInt(value))
+  return hexlify(se.getBytes())
+}
+
+function serializeScriptFunction(scriptFunction: TransactionPayloadVariantScriptFunction) {
+  const se = new bcs.BcsSerializer()
+  scriptFunction.serialize(se)
+  return hexlify(se.getBytes())
+}
+
+export function useRegisterSwapPair(signer?: string) {
+  const provider = useStarcoinProvider()
+  return useCallback(
+    async (x: string, y: string) => {
+      const functionId = `${PREFIX}register_swap_pair`
+      const tyArgs = utils.tx.encodeStructTypeTags([x, y])
+      const args: Uint8Array[] = []
+      const scriptFunction = utils.tx.encodeScriptFunction(functionId, tyArgs, args)
+      const transactionHash = await provider.getSigner(signer).sendUncheckedTransaction({
+        data: serializeScriptFunction(scriptFunction),
+      })
+      return transactionHash
+    },
+    [provider, signer]
+  )
+}
+
+/**
+ * 通过指定换入的代币额度来置换代币
+ */
+export function useSwapExactTokenForToken(signer?: string) {
+  const provider = useStarcoinProvider()
+  const expiredSecs = useTransactionExpirationSecs()
+  return useCallback(
+    async (x: string, y: string, m: string, amount_x_in: number | string, amount_y_out_min: number | string) => {
+        // console.log("222")
+      const functionId = `${PREFIX}swap_exact_token_for_token`
+      const tyArgs = utils.tx.encodeStructTypeTags([x, y, m])
+      const args = [arrayify(serializeU128(amount_x_in)), arrayify(serializeU128(amount_y_out_min))]
+        // console.log("222", x, y, amount_x_in, amount_y_out_min)
+      const scriptFunction = utils.tx.encodeScriptFunction(functionId, tyArgs, args)
+      const transactionHash = await provider.getSigner(signer).sendUncheckedTransaction({
+        data: serializeScriptFunction(scriptFunction),
+        expiredSecs,
+      })
+      return transactionHash
+    },
+    [provider, signer, expiredSecs]
+  )
+}
+
+/**
+ * 通过指定换出的代币额度来置换代币
+ */
+export function useSwapTokenForExactToken(signer?: string) {
+  const provider = useStarcoinProvider()
+  const expiredSecs = useTransactionExpirationSecs()
+  return useCallback(
+    async (x: string, y: string, m: string, amount_x_in_max: number | string, amount_y_out: number | string) => {
+        // console.log("111")
+      const functionId = `${PREFIX}swap_token_for_exact_token`
+      const tyArgs = utils.tx.encodeStructTypeTags([x, y, m])
+      const args = [arrayify(serializeU128(amount_x_in_max)), arrayify(serializeU128(amount_y_out))]
+        // console.log("111", x, y, amount_x_in_max, amount_y_out)
+      const scriptFunction = utils.tx.encodeScriptFunction(functionId, tyArgs, args)
+      const transactionHash = await provider.getSigner(signer).sendUncheckedTransaction({
+        data: serializeScriptFunction(scriptFunction),
+        expiredSecs,
+      })
+      return transactionHash
+    },
+    [provider, signer, expiredSecs]
+  )
+}
+
+/**
+ * 添加流动性，需要在调用 register_swap_pair 之后才可调用
+ */
+export function useAddLiquidity(signer?: string) {
+  const provider = useStarcoinProvider()
+  const expiredSecs = useTransactionExpirationSecs()
+  return useCallback(
+    async (
+      x: string,
+      y: string,
+      amount_x_desired: number | string,
+      amount_y_desired: number | string,
+      amount_x_min: number | string,
+      amount_y_min: number | string
+    ) => {
+      const functionId = `${PREFIX}add_liquidity`
+      const tyArgs = utils.tx.encodeStructTypeTags([x, y])
+      const args = [
+        arrayify(serializeU128(amount_x_desired)),
+        arrayify(serializeU128(amount_y_desired)),
+        arrayify(serializeU128(amount_x_min)),
+        arrayify(serializeU128(amount_y_min)),
+      ]
+      // console.log("参数：", amount_x_desired, amount_y_desired, amount_x_min, amount_y_min)
+      const scriptFunction = utils.tx.encodeScriptFunction(functionId, tyArgs, args)
+      const transactionHash = await provider.getSigner(signer).sendUncheckedTransaction({
+        data: serializeScriptFunction(scriptFunction),
+        expiredSecs,
+      })
+      return transactionHash
+    },
+    [provider, signer, expiredSecs]
+  )
+}
+
+/**
+ * 移除流动性，需要在调用 register_swap_pair 之后才可调用
+ */
+export function useRemoveLiquidity(signer?: string) {
+  const provider = useStarcoinProvider()
+  const expiredSecs = useTransactionExpirationSecs()
+  return useCallback(
+    async (
+      x: string,
+      y: string,
+      liquidity: number | string,
+      amount_x_min: number | string,
+      amount_y_min: number | string
+    ) => {
+      const functionId = `${PREFIX}remove_liquidity`
+      const tyArgs = utils.tx.encodeStructTypeTags([x, y])
+      const args = [
+        arrayify(serializeU128(liquidity)),
+        arrayify(serializeU128(amount_x_min)),
+        arrayify(serializeU128(amount_y_min)),
+      ]
+      const scriptFunction = utils.tx.encodeScriptFunction(functionId, tyArgs, args)
+      const transactionHash = await provider.getSigner(signer).sendUncheckedTransaction({
+        data: serializeScriptFunction(scriptFunction),
+        expiredSecs,
+      })
+      return transactionHash
+    },
+    [provider, signer, expiredSecs]
+  )
+}
