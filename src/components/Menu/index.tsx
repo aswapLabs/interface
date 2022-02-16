@@ -1,5 +1,5 @@
 import React, { useRef } from 'react'
-import { BookOpen, Code, Info, MessageCircle, PieChart } from 'react-feather'
+import { BookOpen, Code, Info, MessageCircle, MessageSquare, Twitter } from 'react-feather'
 import { Link } from 'react-router-dom'
 import styled, { css } from 'styled-components'
 import { ReactComponent as MenuIcon } from '../../assets/images/menu.svg'
@@ -121,7 +121,7 @@ const InternalMenuItem = styled(Link)`
   }
 `
 
-const CODE_LINK = 'https://github.com/starcoinorg/starcoin'
+const CODE_LINK = 'https://github.com/aswapLabs'
 
 export default function Menu() {
   const { account } = useActiveWeb3React()
@@ -165,8 +165,14 @@ export default function Menu() {
               <Trans>Discord</Trans>
             </div>
           </MenuItem>
+          <MenuItem href="https://t.me/AswapGroup">
+            <MessageSquare size={14} />
+            <div>
+              <Trans>Telegram</Trans>
+            </div>
+          </MenuItem>
           <MenuItem href="https://twitter.com/aswaplabs">
-            <PieChart size={14} />
+            <Twitter size={14} />
             <div>
               <Trans>Twitter</Trans>
             </div>

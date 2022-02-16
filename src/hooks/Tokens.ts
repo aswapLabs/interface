@@ -326,7 +326,7 @@ export function regPair(chainId: number|undefined, tokenA: string|undefined, tok
     "tokenB":tokenB, // "0x9bb5ace47e68616f64229b119f4c5d95::coin222::coin222"
   };
   //最长等待60s todo 待修改api地址
-  const res = request('POST',"http://101.43.164.104:8631/api/pair/reg", {
+  const res = request('POST',"https://aswap.exchange/api/pair/reg", {
     json: params
   });
   const map = JSON.parse(res.getBody('utf8'));
@@ -346,7 +346,7 @@ export function regPair1(chainId: number|undefined, tokenA: string|undefined, to
     "tokenB":tokenB, // "0x9bb5ace47e68616f64229b119f4c5d95::coin222::coin222"
   };
   //最长等待60s todo 待修改api地址
-  return fetch("http://101.43.164.104:8631/api/pair/reg", {
+  return fetch("https://aswap.exchange/api/pair/reg", {
     method: 'POST',
     headers: {
       "Content-type": "application/json",

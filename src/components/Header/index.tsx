@@ -11,7 +11,7 @@ import { useSTCBalances } from 'state/wallet/hooks'
 import styled from 'styled-components/macro'
 // import Logo from '../../assets/svg/logo.svg'
 // import LogoDark from '../../assets/svg/logo_white.svg'
-import Logo from '../../assets/images/logo_s.png'
+import Logo from '../../assets/images/logo.png'
 // import LogoDark from '../../assets/svg/starcoin_logo.svg'
 
 import { useActiveWeb3React } from '../../hooks/web3'
@@ -309,7 +309,7 @@ export default function Header() {
       <HeaderRow>
         <Title href=".">
           <UniIcon>
-            <img height={'54px'} src={Logo} alt="logo" />
+            <img height={'36px'} src={Logo} alt="logo" style={{marginLeft: '10px'}} />
           </UniIcon>
         </Title>
       </HeaderRow>
